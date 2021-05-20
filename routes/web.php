@@ -198,7 +198,7 @@ Route::get('userprofile', "App\Http\Controllers\Bookcontroller@profile");
 Route::post('userdetailsedit', "App\Http\Controllers\Bookcontroller@userdetailsedit");
 
 
-Route::get('userorders', "App\Http\Controllers\Ordercontroller@userorders");
+Route::get('userorders', "App\Http\Controllers\OrderController@userorders");
 
 
 Route::get('/showbill/{ono}',function(Request $req, $ono){
@@ -206,10 +206,10 @@ Route::get('/showbill/{ono}',function(Request $req, $ono){
     return redirect('showbill');
 });
 
-Route::get('showbill', "App\Http\Controllers\Ordercontroller@showbill");
+Route::get('showbill', "App\Http\Controllers\OrderController@showbill");
 
 
-Route::get('userlogout', "App\Http\Controllers\Ordercontroller@userlogout");
+Route::get('userlogout', "App\Http\Controllers\OrderController@userlogout");
 
 
 
