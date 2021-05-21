@@ -185,7 +185,7 @@ class OrderController extends Controller
        Orderdetailsmodel::where(['username' =>$username,'order_status'=>"pending"])->update(['order_status'=>"confirmed"]);
 
        echo '<script>alert("Your order is confirmed ")</script>' ;
-       $result=\DB::select('select book.id,book.imgsrc,book.title,book.author,book.cost,order_products.book_qty from(book inner join order_products on book.id=order_products.bid)where order_products.ono="'.$ono->ono.'"');
+       $result=\DB::select("select book.id,book.imgsrc,book.title,book.author,book.cost,order_products.book_qty from(book inner join order_products on book.id=order_products.bid)where order_products.ono='$ono->ono'");
        $user=Loginmodel::where(['username' =>$username])->first();
        $ship=Shipaddmodel::where(['username' =>$username])->first();
        $data=['books'=>$result,'user'=>$user,'ship'=>$ship];
@@ -202,7 +202,7 @@ class OrderController extends Controller
         $ono= session('ono');
 
 
-        $result=\DB::select('select book.id,book.imgsrc,book.title,book.author,book.cost,order_products.book_qty from(book inner join order_products on book.id=order_products.bid)where order_products.ono="'.$ono.'"');
+        $result=\DB::select("select book.id,book.imgsrc,book.title,book.author,book.cost,order_products.book_qty from(book inner join order_products on book.id=order_products.bid)where order_products.ono='$ono'");
         $user=Loginmodel::where(['username' =>$username])->first();
         $ship=Shipaddmodel::where(['username' =>$username])->first();
         $data=['books'=>$result,'user'=>$user,'ship'=>$ship];
