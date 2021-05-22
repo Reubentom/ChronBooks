@@ -89,7 +89,7 @@ class OrderController extends Controller
            $oid = Orderdetailsmodel::where(['username' =>$username,'order_status'=>"pending"])->first();
           //  echo $oid->ono;
 
-           $result=\DB::select('select book.id,book.imgsrc,book.title,book.author,book.cost,cart.book_qty from(book inner join cart on book.id=cart.bid)where cart.username="'.$username.'"');
+           $result=\DB::select("select book.id,book.imgsrc,book.title,book.author,book.cost,cart.book_qty from(book inner join cart on book.id=cart.bid)where cart.username='$username'");
           
            $usr = Loginmodel::where(['username' =>$username])->first();
            
@@ -127,7 +127,7 @@ class OrderController extends Controller
            $oid = Orderdetailsmodel::where(['username' =>$username,'order_status'=>"pending"])->first();
           //  echo $oid->ono;
 
-           $result=\DB::select('select book.id,book.imgsrc,book.title,book.author,book.cost,cart.book_qty from(book inner join cart on book.id=cart.bid)where cart.username="'.$username.'"');
+           $result=\DB::select("select book.id,book.imgsrc,book.title,book.author,book.cost,cart.book_qty from(book inner join cart on book.id=cart.bid)where cart.username='$username'");
           
            $usr = Loginmodel::where(['username' =>$username])->first();
            
@@ -202,7 +202,8 @@ class OrderController extends Controller
         $ono= session('ono');
 
 
-        $result=\DB::select("select book.id,book.imgsrc,book.title,book.author,book.cost,order_products.book_qty from(book inner join order_products on book.id=order_products.bid)where order_products.ono='$ono'");
+        $result=\DB::select("select book.id,book.imgsrc,book.title,book.author,book.cost,order_products.book_qty from(book inner join order_products on book.id=order_products.bid)where order_products.ono='$ono'"
+    );
         $user=Loginmodel::where(['username' =>$username])->first();
         $ship=Shipaddmodel::where(['username' =>$username])->first();
         $data=['books'=>$result,'user'=>$user,'ship'=>$ship];
